@@ -566,3 +566,83 @@
   pointer-events: auto;
   color: inherit !important;
 }
+
+/* ── FINAL LAYOUT FIX ── */
+
+/* Kill ALL list bullets in the sidebar nav */
+.md-nav__list,
+.md-sidebar .md-nav__list,
+.md-sidebar .md-nav__item {
+  list-style: none !important;
+  list-style-type: none !important;
+}
+.md-nav__list::before,
+.md-nav__item::before,
+.md-nav__item::marker {
+  content: none !important;
+  display: none !important;
+}
+
+/* Sidebar — pinned to the left edge */
+@media screen and (min-width: 76.1875em) {
+  .md-grid {
+    max-width: none;
+    padding-left: 0;
+    padding-right: 1.2rem;
+  }
+  .md-sidebar--primary {
+    width: 14rem;
+    padding: 0 !important;
+    margin-left: 0 !important;
+  }
+  .md-sidebar--primary .md-sidebar__scrollwrap {
+    padding-left: 8px !important;
+    padding-right: 4px;
+    margin: 0 !important;
+  }
+  .md-main__inner {
+    margin-left: 0;
+  }
+  .md-content {
+    max-width: 52rem;
+    margin-left: 1rem;
+  }
+  .md-sidebar--secondary {
+    margin-left: auto;
+  }
+}
+
+/* Ensure Home (and every page) shows the primary sidebar */
+.md-sidebar--primary {
+  display: block !important;
+}
+
+/* Top-level collapsible groups: Part 1/2/3 — make the chevron + label feel like a drop-down */
+.md-sidebar--primary .md-nav__item--nested > .md-nav__link {
+  font-weight: 600;
+  font-size: 14px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  color: rgba(0,0,0,0.88);
+}
+[data-md-color-scheme="slate"] .md-sidebar--primary .md-nav__item--nested > .md-nav__link {
+  color: rgba(255,255,255,0.92);
+}
+
+/* The chevron arrow */
+.md-nav__icon.md-icon {
+  display: inline-block !important;
+}
+
+/* Sub-items (the 4 model leaves under Step 3) */
+.md-sidebar--primary .md-nav__item .md-nav__item .md-nav__link {
+  padding-left: 24px;
+  font-size: 13px;
+  color: rgba(0,0,0,0.62);
+}
+.md-sidebar--primary .md-nav__item .md-nav__item .md-nav__link::before {
+  display: none !important;
+}
+[data-md-color-scheme="slate"] .md-sidebar--primary .md-nav__item .md-nav__item .md-nav__link {
+  color: rgba(255,255,255,0.62);
+}

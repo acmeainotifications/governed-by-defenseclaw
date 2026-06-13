@@ -9,8 +9,6 @@ theme:
     - navigation.top
     - navigation.tracking
     - navigation.footer
-    - navigation.sections
-    - navigation.expand
     - content.code.copy
     - content.code.annotate
     - content.tabs.link
