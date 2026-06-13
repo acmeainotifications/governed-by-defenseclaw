@@ -95,4 +95,4 @@ To change scope ("only these 5 spaces"), tone ("more formal"), or output rules (
 systemctl --user restart openclaw-gateway.service
 ```
 
-[Continue to Stage 1. Read →](phase-3.md){ .md-button .md-button--primary }
+[Continue to Step 3 — Read →](phase-3.md){ .md-button .md-button--primary }

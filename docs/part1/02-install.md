@@ -52,4 +52,4 @@ defenseclaw --version
 
 ![DefenseClaw install output](../assets/step3-defenseclaw-install.png)
 
-[Continue to Set up your model →](03-setup-model.md){ .md-button .md-button--primary }
+[Continue to Step 3 — Pick your model →](03-setup-model.md){ .md-button .md-button--primary }
