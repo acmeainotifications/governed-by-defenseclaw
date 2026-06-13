@@ -646,3 +646,50 @@
 [data-md-color-scheme="slate"] .md-sidebar--primary .md-nav__item .md-nav__item .md-nav__link {
   color: rgba(255,255,255,0.62);
 }
+
+/* ── KILL THE DECORATOR DASHES (the "-" the user kept seeing) ── */
+.md-sidebar--primary .md-nav__link::before,
+.md-sidebar--primary .md-nav__item::before,
+.md-sidebar--primary .md-nav__item .md-nav__item .md-nav__link::before {
+  content: none !important;
+  display: none !important;
+  background: transparent !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/* ── SIDEBAR HARD LEFT — items start at 4px from screen edge ── */
+@media screen and (min-width: 76.1875em) {
+  .md-sidebar--primary {
+    width: 13rem;
+    padding: 0 !important;
+    margin: 0 !important;
+    left: 0 !important;
+  }
+  .md-sidebar--primary .md-sidebar__scrollwrap {
+    padding-left: 4px !important;
+    padding-right: 4px !important;
+    margin: 0 !important;
+  }
+  .md-sidebar--primary .md-sidebar__inner {
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+  }
+  .md-sidebar--primary .md-nav,
+  .md-sidebar--primary .md-nav__list {
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+  }
+  /* Top-level items (Home, Part 1, Part 2, Part 3) — start at 4px */
+  .md-sidebar--primary .md-nav--primary > .md-nav__list > .md-nav__item > .md-nav__link {
+    padding-left: 4px !important;
+  }
+  /* 2nd-level (Step 1, Step 2, Step 3, …) */
+  .md-sidebar--primary .md-nav__item .md-nav__item > .md-nav__link {
+    padding-left: 14px !important;
+  }
+  /* 3rd-level — the 4 model leaves under Step 3 */
+  .md-sidebar--primary .md-nav__item .md-nav__item .md-nav__item > .md-nav__link {
+    padding-left: 24px !important;
+  }
+}

@@ -1,12 +1,6 @@
 <style>
-/* Hide the left sidebar (just "Overview") on this page only.
-   Content expands into the freed space. */
-.md-sidebar--primary { display: none !important; }
-.md-content__inner > h1:first-of-type { display: none; }   /* hide markdown H1, hero owns the title */
-@media screen and (min-width: 76.25em) {
-  .md-main__inner > .md-content { max-width: none; }
-  .md-content__inner { max-width: 64rem; margin-left: auto; margin-right: auto; }
-}
+/* Home keeps the same sidebar as article pages; only hide the H1 (hero owns it) */
+.md-content__inner > h1:first-of-type { display: none; }
 </style>
 
 <div class="dc-hero dc-hero--compact">
