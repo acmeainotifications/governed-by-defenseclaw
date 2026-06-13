@@ -5,6 +5,8 @@ docs_dir: docs
 theme:
   name: material
   features:
+    - navigation.tabs
+    - navigation.tabs.sticky
     - navigation.indexes
     - navigation.top
     - navigation.tracking
@@ -64,11 +66,13 @@ nav:
     - Step 1 — Prerequisites: part1/01-prereqs.md
     - Step 2 — Install: part1/02-install.md
     - Step 3 — Set up your model: part1/03-setup-model.md
-    - Step 4A — Cloud: part1/04a-cloud.md
-    - Step 4B — vLLM / Ollama: part1/04b-vllm.md
+    - ↳ Anthropic: part1/step3-anthropic.md
+    - ↳ OpenAI: part1/step3-openai.md
+    - ↳ vLLM: part1/step3-vllm.md
+    - ↳ Ollama: part1/step3-ollama.md
     - Step 5 — Sandbox-native: part1/05-sandbox.md
     - Step 6 — Action mode: part1/06-action-mode.md
-    - Step 7 — Splunk: part1/07-splunk.md
+    - Step 7 — Splunk dashboard: part1/07-splunk.md
     - Step 8 — Scanners: part1/08-scanners.md
     - Step 9 — Observability: part1/09-observability.md
   - Part 2 — Telegram:
