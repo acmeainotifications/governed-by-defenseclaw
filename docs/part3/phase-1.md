@@ -59,6 +59,4 @@ curl -s https://webexapis.com/v1/people/me \
 ??? note "Expected output"
     Your own profile JSON.
 
-![Token exchange + /people/me succeeding](../assets/part3-token-exchange.png)
-
 [Continue to Step 2. Wire Webex as governed tools →](phase-2.md){ .md-button .md-button--primary }

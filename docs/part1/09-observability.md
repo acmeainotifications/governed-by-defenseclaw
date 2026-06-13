@@ -14,8 +14,6 @@ Beyond Splunk (Step 7), DefenseClaw exposes a handful of other visualization and
 defenseclaw doctor
 ```
 
-![defenseclaw doctor output](../assets/step10-doctor.png)
-
 ## Status dashboard
 
 `defenseclaw status` shows running totals + subsystem state at a glance.
@@ -24,8 +22,6 @@ defenseclaw doctor
 defenseclaw status
 ```
 
-![defenseclaw status output](../assets/step10-status.png)
-
 ## Built-in alerts viewer
 
 A terminal dashboard of every alert event recorded.
@@ -33,8 +29,6 @@ A terminal dashboard of every alert event recorded.
 ```bash
 defenseclaw alerts
 ```
-
-![defenseclaw alerts output](../assets/step10-alerts.png)
 
 ## Bundled local observability stack
 
@@ -51,8 +45,6 @@ After it starts, browse to:
 | Grafana | `http://localhost:3000` (admin / admin on first login) |
 | Prometheus | `http://localhost:9090` |
 | Loki | `http://localhost:3100` |
-
-![Grafana DefenseClaw dashboard](../assets/step10-grafana.png)
 
 ## Prometheus scrape (existing setup)
 

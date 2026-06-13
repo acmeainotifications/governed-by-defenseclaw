@@ -73,7 +73,7 @@ For the guardrail wizard:
 | Prompt | Answer |
 |---|---|
 | Enable guardrail | **y** |
-| Enforcement mode | **observe** (we'll flip to action in [Step 6](MEDIUM_URL_TO_06_ACTION_MODE)) |
+| Enforcement mode | **observe** (we'll flip to action in [Step 6](06-action-mode.md)) |
 | Scanner engine | **local** |
 | LLM judge | **N** (regex packs handle the demo block) |
 | Advanced options | **N** |
@@ -130,9 +130,9 @@ Send the benign prompt first (you'll get a normal answer), then the SSH-key one 
 
 You now have a governed cloud-backed OpenClaw agent in **host mode**. The full stack is one more step:
 
-- [Step 5. Move into the sandbox](../05-sandbox/), full deployment (OpenClaw + DefenseClaw + OpenShell isolation)
-- [Step 6. Flip to action mode](MEDIUM_URL_TO_06_ACTION_MODE), start blocking instead of just observing
-- [Step 7. Splunk dashboard](MEDIUM_URL_TO_07_SPLUNK), searchable audit trail
-- Or continue to [Part 2. Telegram](MEDIUM_URL_TO_PART2_INDEX) to add a chat channel
+- [Step 5. Move into the sandbox](05-sandbox.md), full deployment (OpenClaw + DefenseClaw + OpenShell isolation)
+- [Step 6. Flip to action mode](06-action-mode.md), start blocking instead of just observing
+- [Step 7. Splunk dashboard](07-splunk.md), searchable audit trail
+- Or continue to [Part 2. Telegram](../part2/index.md) to add a chat channel
 
-**[Continue to Sandbox-native →](../05-sandbox/)**
+**[Continue to Sandbox-native →](05-sandbox.md)**

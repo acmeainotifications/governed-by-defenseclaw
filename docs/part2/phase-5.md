@@ -31,8 +31,6 @@ tail -f ~/.defenseclaw/gateway.log | grep --line-buffered -E 'sev=|cats='
                     PATH-ETC-PASSWD: /etc/passwd access ]
     ```
 
-![Same sev=HIGH verdicts as Part 1, triggered by a Telegram message](../assets/part2-injection-detected.png)
-
 !!! warning "Observe vs. action still applies"
     In observe mode these are alerts, logged and named, request still proceeds. To actually block, switch the guardrail to action mode (`defenseclaw setup guardrail --mode action --restart`) and set a block threshold, exactly as in Part 1. The point here is that channel input is governed the same as the TUI, there's no separate, weaker path for Telegram.
 

@@ -725,3 +725,8 @@
     padding-left: 6px !important;
   }
 }
+
+/* ── Breathing room: article H1 not flush against header bar ── */
+.md-content__inner > h1:first-of-type {
+  margin-top: 1.5rem !important;
+}

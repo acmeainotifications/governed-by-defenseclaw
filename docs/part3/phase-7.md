@@ -89,6 +89,4 @@ Pull a meeting's transcript and get a summary plus a clean split of YOUR action 
 
 That's where it slips most often early on.
 
-![Meeting summary + your-vs-team action items](../assets/part3-meeting-summary.png)
-
 [Continue to Step 8. Stage 6: Drafts →](phase-8.md){ .md-button .md-button--primary }
