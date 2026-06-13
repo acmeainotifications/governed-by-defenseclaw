@@ -693,3 +693,35 @@
     padding-left: 24px !important;
   }
 }
+
+/* ════════════════════════════════════════════════════════
+   FINAL OVERRIDE — wins over all earlier rules in this file
+   ════════════════════════════════════════════════════════ */
+@media screen and (min-width: 76.1875em) {
+  html body .md-sidebar--primary {
+    width: 14rem !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  html body .md-sidebar--primary .md-sidebar__scrollwrap,
+  html body .md-sidebar--primary .md-sidebar__inner,
+  html body .md-sidebar--primary .md-nav,
+  html body .md-sidebar--primary .md-nav__list {
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+  }
+  /* Push the link text against the left edge */
+  html body .md-sidebar--primary .md-nav--primary > .md-nav__list > .md-nav__item > .md-nav__link {
+    padding-left: 6px !important;
+  }
+  html body .md-sidebar--primary .md-nav__item .md-nav__item > .md-nav__link {
+    padding-left: 14px !important;
+  }
+  html body .md-sidebar--primary .md-nav__item .md-nav__item .md-nav__item > .md-nav__link {
+    padding-left: 26px !important;
+  }
+  /* Title row (DefenseClaw + OpenClaw on DGX Spark + svg) — left padding kill */
+  html body .md-sidebar--primary .md-nav__title {
+    padding-left: 6px !important;
+  }
+}
