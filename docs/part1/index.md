@@ -30,14 +30,13 @@ Without governance you're trusting the agent, and every skill it installs, to be
 <ul class="step-list">
   <li><a href="01-prereqs/"><span class="step-num">1</span> Prerequisites</a></li>
   <li><a href="02-install/"><span class="step-num">2</span> Install OpenClaw + DefenseClaw</a></li>
-  <li><a href="03-setup-model/"><span class="step-num">3</span> Set up your model</a></li>
+  <li><a href="03-setup-model/"><span class="step-num">3</span> Pick your model</a></li>
+  <li><a href="step3-anthropic/"><span class="step-num">4</span> Set up your model</a></li>
 </ul>
 
 ### Wire it up
 
 <ul class="step-list">
-  <li><a href="04a-cloud/"><span class="step-num">4A</span> Cloud</a></li>
-  <li><a href="04b-vllm/"><span class="step-num">4B</span> vLLM / Ollama</a></li>
   <li><a href="05-sandbox/"><span class="step-num">5</span> Sandbox-native</a></li>
   <li><a href="06-action-mode/"><span class="step-num">6</span> Action mode (blocking)</a></li>
 </ul>

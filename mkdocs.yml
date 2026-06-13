@@ -61,8 +61,8 @@ nav:
     - Part 1 — Overview: part1/index.md
     - Step 1 — Prerequisites: part1/01-prereqs.md
     - Step 2 — Install: part1/02-install.md
-    - Step 3 — Set up your model:
-      - Pick your model: part1/03-setup-model.md
+    - Step 3 — Pick your model: part1/03-setup-model.md
+    - Step 4 — Set up your model:
       - Anthropic: part1/step3-anthropic.md
       - OpenAI: part1/step3-openai.md
       - vLLM: part1/step3-vllm.md
@@ -85,12 +85,12 @@ nav:
     - Step 1 — OAuth: part3/phase-1.md
     - Step 2 — Wire tools: part3/phase-2.md
     - Step 2.5 — Agent persona: part3/persona.md
-    - Stage 1 — Read: part3/phase-3.md
-    - Stage 2 — Needs me: part3/phase-4.md
-    - Stage 3 — Cluster: part3/phase-5.md
-    - Stage 4 — Rank: part3/phase-6.md
-    - Stage 5 — Meetings: part3/phase-7.md
-    - Stage 6 — Drafts: part3/phase-8.md
+    - Step 3 — Read: part3/phase-3.md
+    - Step 4 — Needs me: part3/phase-4.md
+    - Step 5 — Cluster: part3/phase-5.md
+    - Step 6 — Rank: part3/phase-6.md
+    - Step 7 — Meetings: part3/phase-7.md
+    - Step 8 — Drafts: part3/phase-8.md
     - Step 9 — Assemble digest: part3/phase-9.md
     - Step 10 — Governance: part3/phase-10.md
     - Skill template: part3/skill-template.md

@@ -136,10 +136,21 @@ body, .md-typeset {
 
 @media screen and (min-width: 76.1875em) {
   .md-sidebar--primary {
-    width: 16rem;
+    width: 19rem;
     padding-top: 1.5rem;
-    padding-left: 1.25rem;
+    padding-left: 1.5rem;
     padding-right: 0.5rem;
+  }
+  /* Hide the right-side TOC entirely — single nav on the left */
+  .md-sidebar--secondary {
+    display: none !important;
+  }
+  /* Let content expand into the freed space */
+  .md-main__inner > .md-content {
+    max-width: none;
+  }
+  .md-content__inner {
+    max-width: 48rem;
   }
 }
 

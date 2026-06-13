@@ -1,4 +1,4 @@
-# Step 3 — Set up your model: OpenAI
+# Step 4 — Set up your model: OpenAI
 
 ### 3.1 — Get an API key
 
@@ -135,4 +135,4 @@ You now have a governed cloud-backed OpenClaw agent in **host mode**. The full s
 - [Step 7. Splunk dashboard](07-splunk.md), searchable audit trail
 - Or continue to [Part 2. Telegram](../part2/index.md) to add a chat channel
 
-**[Continue to Sandbox-native →](05-sandbox.md)**
+**[Continue to Step 5 — Sandbox-native →](05-sandbox.md)**
