@@ -1,732 +1,625 @@
-/* Float phone screenshots on the right of the step content */
-.phone-shot {
-  float: right;
-  width: 280px;
-  margin: 0 0 1.5rem 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+/* ═══════════════════════════════════════════════════════════════════
+   DefenseClaw + OpenClaw on DGX Spark — design system
+   Inspired by Vercel / Linear / Stripe docs
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── Design tokens ─────────────────────────────────────────────── */
+:root {
+  --dc-accent: #5a67d8;
+  --dc-accent-hover: #4c56c0;
+  --dc-accent-tint: #eef0ff;
+  --dc-accent-border: #d8ddff;
+
+  --dc-ink: #0f172a;
+  --dc-ink-2: #334155;
+  --dc-ink-3: #64748b;
+  --dc-ink-4: #94a3b8;
+
+  --dc-bg: #ffffff;
+  --dc-bg-soft: #fafbfc;
+  --dc-bg-sunken: #f4f5f7;
+
+  --dc-border: #e7e9ec;
+  --dc-border-strong: #d4d7dc;
+
+  --dc-code-bg: #f6f7f9;
+  --dc-code-border: #ececef;
+
+  --dc-radius: 6px;
+  --dc-radius-sm: 4px;
+
+  --md-text-font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --md-code-font: "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace;
+
+  --md-primary-fg-color: var(--dc-bg);
+  --md-primary-bg-color: var(--dc-ink);
+  --md-accent-fg-color: var(--dc-accent);
+  --md-typeset-a-color: var(--dc-accent);
 }
 
-/* Wrap each numbered step so the next section starts cleanly below the floated image */
-.step-with-shot::after {
-  content: "";
-  display: table;
-  clear: both;
+[data-md-color-scheme="slate"] {
+  --dc-accent: #8b95ff;
+  --dc-accent-hover: #a3acff;
+  --dc-accent-tint: #1c1f33;
+  --dc-accent-border: #2a2f4a;
+
+  --dc-ink: #e6e8eb;
+  --dc-ink-2: #b8bfc8;
+  --dc-ink-3: #8a929e;
+  --dc-ink-4: #5f6772;
+
+  --dc-bg: #0b0e14;
+  --dc-bg-soft: #11151c;
+  --dc-bg-sunken: #161a23;
+
+  --dc-border: #1f242e;
+  --dc-border-strong: #2a3140;
+
+  --dc-code-bg: #11151c;
+  --dc-code-border: #1f242e;
+
+  --md-default-bg-color: var(--dc-bg);
+  --md-default-fg-color: var(--dc-ink);
+  --md-typeset-a-color: var(--dc-accent);
 }
 
-/* Make sure h2/h3 inside a phone-shot section don't get pushed too far */
-.step-with-shot h2,
-.step-with-shot h3 {
-  margin-top: 0;
+/* ═══════════════════════════════════════════════════════════════════
+   Layout — body, header, content
+   ═══════════════════════════════════════════════════════════════════ */
+
+body, .md-typeset {
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Responsive: stack on narrow screens */
-@media (max-width: 720px) {
-  .phone-shot {
-    float: none;
-    display: block;
-    margin: 0 auto 1rem;
+.md-main, .md-container {
+  background: var(--dc-bg);
+}
+
+/* ── Header ── clean white bar with subtle bottom border ── */
+.md-header {
+  background: var(--dc-bg) !important;
+  color: var(--dc-ink) !important;
+  border-bottom: 1px solid var(--dc-border);
+  box-shadow: none !important;
+  height: 56px;
+}
+.md-header[data-md-state="shadow"] {
+  box-shadow: 0 1px 0 var(--dc-border) !important;
+}
+.md-header__title {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--dc-ink) !important;
+  margin-left: 0;
+}
+.md-header__topic {
+  color: var(--dc-ink) !important;
+}
+.md-header__button {
+  color: var(--dc-ink) !important;
+}
+.md-header .md-search__input {
+  background: var(--dc-bg-sunken);
+  color: var(--dc-ink);
+  border: 1px solid var(--dc-border);
+  border-radius: var(--dc-radius);
+  font-size: 13px;
+  height: 36px;
+}
+.md-header .md-search__input::placeholder {
+  color: var(--dc-ink-3);
+}
+.md-header .md-search__input:focus {
+  border-color: var(--dc-accent);
+  background: var(--dc-bg);
+}
+.md-header .md-search__icon {
+  color: var(--dc-ink-3) !important;
+}
+
+[data-md-color-scheme="slate"] .md-header {
+  background: var(--dc-bg) !important;
+  border-bottom-color: var(--dc-border);
+}
+
+/* ── Grid container ── */
+.md-grid {
+  max-width: 1320px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   Sidebar — clean hierarchy
+   ═══════════════════════════════════════════════════════════════════ */
+
+@media screen and (min-width: 76.1875em) {
+  .md-sidebar--primary {
+    width: 16rem;
+    padding-top: 1.5rem;
+    padding-left: 1.25rem;
+    padding-right: 0.5rem;
   }
 }
 
-/* Wider variant for terminal screenshots (landscape orientation) */
-.terminal-shot {
-  float: right;
-  width: 320px;
-  margin: 0 0 1.5rem 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+.md-sidebar--primary .md-sidebar__scrollwrap {
+  margin: 0;
+  scrollbar-width: thin;
 }
 
-@media (max-width: 720px) {
-  .terminal-shot {
-    float: none;
-    display: block;
-    width: 100%;
-    margin: 0 auto 1rem;
-  }
+/* Hide the redundant title row at the top of the sidebar nav (drawer label) */
+.md-sidebar--primary .md-nav__title[for="__drawer"] {
+  display: none;
 }
 
-/* === Top tabs: smaller height, active tab gets a clear box === */
-.md-tabs {
-  height: 2.2rem;
+/* Kill any list-style bullets */
+.md-nav__list, .md-nav__item {
+  list-style: none !important;
+}
+
+/* Reset all nav links to a clean baseline */
+.md-sidebar--primary .md-nav__link {
+  font-size: 13.5px;
+  line-height: 1.5;
+  font-weight: 400;
+  color: var(--dc-ink-2);
+  padding: 6px 10px 6px 12px;
+  border-radius: var(--dc-radius-sm);
+  margin: 1px 0;
+  transition: background 0.12s, color 0.12s;
+}
+.md-sidebar--primary .md-nav__link:hover {
+  background: var(--dc-bg-sunken);
+  color: var(--dc-ink);
+}
+.md-sidebar--primary .md-nav__link--active,
+.md-sidebar--primary .md-nav__link[aria-current="true"] {
+  background: var(--dc-accent-tint) !important;
+  color: var(--dc-accent) !important;
   font-weight: 500;
 }
 
-.md-tabs__list { height: 2.2rem; }
-.md-tabs__item { height: 2.2rem; }
-
-.md-tabs__link {
-  font-size: 0.85rem;
+/* Top-level group headers (Part 1, Part 2, Part 3) — uppercase tag style */
+.md-sidebar--primary .md-nav--primary > .md-nav__list > .md-nav__item--nested > .md-nav__link {
+  font-size: 11px;
   font-weight: 600;
-  letter-spacing: 0.02em;
-  opacity: 0.75;
-  padding: 0.3rem 0.85rem;
-  margin: 0 0.2rem;
-  margin-top: 0.4rem;
-  border-radius: 4px;
-  border: 1.5px solid transparent;
-  transition: opacity 0.15s, border-color 0.15s, background-color 0.15s;
-}
-
-.md-tabs__link:hover {
-  opacity: 1;
-}
-
-/* Active tab: solid visible box outline + subtle bg tint */
-.md-tabs__item--active .md-tabs__link {
-  font-weight: 800;
-  opacity: 1 !important;
-  border: 1.5px solid rgba(255, 255, 255, 0.95);
-  background-color: rgba(255, 255, 255, 0.15);
-}
-
-/* === Sidebar: demote the duplicate part-name header === */
-/* The "DefenseClaw" / "Telegram" / "Webex" label at the top of the sidebar
-   is a duplicate of the active top tab. Shrink + softer color so the real
-   navigation (Base install, Extensions, Setup, Stages, etc.) reads first. */
-.md-nav--primary > .md-nav__title {
-  font-size: 0.7rem;
-  font-weight: 600;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  opacity: 0.55;
-  padding-top: 0.6rem;
-  padding-bottom: 0.4rem;
+  color: var(--dc-ink-3);
+  padding: 14px 10px 6px 12px;
+  margin-top: 8px;
+}
+.md-sidebar--primary .md-nav--primary > .md-nav__list > .md-nav__item--nested > .md-nav__link:hover {
+  background: transparent;
+  color: var(--dc-ink-2);
 }
 
-/* The sub-section headers (Base install / Extensions / Setup / Stages / Wrap-up)
-   become the real eye-level entries — bump them up slightly */
-.md-nav__item--section > .md-nav__link {
-  font-weight: 600;
-  font-size: 0.85rem;
+/* Top-level non-nested items (Home) */
+.md-sidebar--primary .md-nav--primary > .md-nav__list > .md-nav__item:not(.md-nav__item--nested) > .md-nav__link {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--dc-ink);
+  padding-left: 12px;
 }
 
-
-/* === Project Steps — two-column compact text list === */
-.step-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-  margin: 1.25rem 0;
+/* Second-level items (Steps within Parts) */
+.md-sidebar--primary .md-nav--primary .md-nav .md-nav__link {
+  padding-left: 12px;
+  font-size: 13.5px;
 }
 
-.step-grid > div { min-width: 0; }
-
-/* Subtler section headers — uppercase but small and muted */
-.step-grid h3 {
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  opacity: 0.55;
-  font-weight: 700;
-  margin: 0 0 0.5rem 0;
-  border-bottom: 1px solid var(--md-default-fg-color--lighter);
-  padding-bottom: 0.35rem;
+/* Third-level (Step 3 model leaves) — indented and lighter */
+.md-sidebar--primary .md-nav--primary .md-nav .md-nav .md-nav__link {
+  padding-left: 24px;
+  font-size: 13px;
+  color: var(--dc-ink-3);
 }
 
-/* Kill default ul styling */
-.md-typeset .step-list,
-.md-typeset .step-list li {
-  list-style: none !important;
-  list-style-type: none !important;
-}
-.md-typeset .step-list { padding: 0 !important; margin: 0 !important; }
-.md-typeset .step-list li { margin: 0 !important; padding: 0 !important; }
-.md-typeset .step-list li::before,
-.md-typeset .step-list li::marker {
-  content: none !important;
+/* Hide Material's built-in icon arrows on Steps */
+.md-sidebar--primary .md-nav__icon {
   display: none !important;
 }
 
-/* Each row: flex with number left-aligned, title right of it */
-.step-list a {
-  display: flex !important;
-  align-items: baseline;
-  padding: 0.18rem 0;
-  text-decoration: none !important;
-  color: var(--md-default-fg-color);
-  font-size: 0.78rem;           /* matches Material body text */
-  line-height: 1.55;
-  transition: color 0.1s;
-}
-
-.step-list a:hover {
-  color: var(--md-primary-fg-color);
-}
-
-/* Subtle muted numbers — fixed-width column on left */
-.step-num {
-  display: inline-block;
-  width: 1.3rem;
-  text-align: right;
-  margin-right: 0.7rem;
-  opacity: 0.45;
+/* Secondary (right-side) TOC sidebar */
+.md-sidebar--secondary .md-nav__title {
+  font-size: 11px;
   font-weight: 600;
-  font-variant-numeric: tabular-nums;
-  background: transparent !important;
-  color: inherit !important;
-  border-radius: 0 !important;
-  height: auto !important;
-  border: 0 !important;
-  font-size: inherit !important;
-  flex-shrink: 0;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--dc-ink-3);
+  padding: 14px 12px 6px;
+}
+.md-sidebar--secondary .md-nav__link {
+  font-size: 12.5px;
+  color: var(--dc-ink-3);
+  padding: 4px 12px;
+  border-left: 2px solid transparent;
+}
+.md-sidebar--secondary .md-nav__link:hover {
+  color: var(--dc-ink);
+}
+.md-sidebar--secondary .md-nav__link--active {
+  color: var(--dc-accent) !important;
+  border-left-color: var(--dc-accent);
+  font-weight: 500;
 }
 
-.step-num--dash {
-  font-weight: 400;
-  opacity: 0.35;
+/* ═══════════════════════════════════════════════════════════════════
+   Typography (content)
+   ═══════════════════════════════════════════════════════════════════ */
+
+.md-typeset {
+  font-size: 15.5px;
+  line-height: 1.7;
+  color: var(--dc-ink-2);
 }
 
-@media (max-width: 720px) {
-  .step-grid { grid-template-columns: 1fr; }
-}
-/* === Compact tables inside tabs (cuts ~30% off height) === */
-.tabbed-content table {
-  font-size: 0.85rem;
-  margin: 0.4rem 0;
+.md-content {
+  padding-top: 0.5rem;
 }
 
-.tabbed-content table th,
-.tabbed-content table td {
-  padding: 0.3rem 0.7rem !important;
+.md-typeset h1 {
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.022em;
+  color: var(--dc-ink);
+  margin: 1rem 0 1.25rem;
+}
+.md-typeset h2 {
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+  color: var(--dc-ink);
+  margin: 2.5rem 0 1rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--dc-border);
+}
+.md-typeset h2:first-child {
+  border-top: none;
+  padding-top: 0;
+  margin-top: 0;
+}
+.md-typeset h3 {
+  font-size: 17px;
+  font-weight: 600;
   line-height: 1.4;
+  color: var(--dc-ink);
+  margin: 1.75rem 0 0.75rem;
+}
+.md-typeset h4 {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--dc-ink);
+  margin: 1.5rem 0 0.5rem;
 }
 
-.tabbed-content {
-  padding-top: 0.4rem !important;
+.md-typeset p {
+  margin: 0.75em 0;
 }
 
-/* === Onboard step: command on left, provider tabs+table on right === */
-.onboard-grid {
-  display: grid;
-  grid-template-columns: 1.2fr 1.5fr;
-  gap: 2rem;
-  margin: 1rem 0 2rem 0;
-  align-items: start;
+.md-typeset strong {
+  color: var(--dc-ink);
+  font-weight: 600;
 }
 
-.onboard-grid > div { min-width: 0; }
-
-/* Don't let the code block get clipped — scroll horizontally if it overflows */
-.onboard-grid .highlight,
-.onboard-grid pre,
-.onboard-grid pre code {
-  max-width: 100%;
-  overflow-x: auto;
+.md-typeset a {
+  color: var(--dc-accent);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.15s;
+}
+.md-typeset a:hover {
+  border-bottom-color: var(--dc-accent);
 }
 
-@media (max-width: 960px) {
-  .onboard-grid { grid-template-columns: 1fr; }
+.md-typeset hr {
+  border: none;
+  border-top: 1px solid var(--dc-border);
+  margin: 2rem 0;
 }
 
-/* === Hide right-hand Table of Contents on all pages + widen the content area === */
-.md-sidebar--secondary { display: none !important; }
-
-@media screen and (min-width: 76.25em) {
-  /* Let the content fill the space the TOC used to take */
-  .md-main__inner > .md-content { max-width: none; }
-  /* Wider readable line for prose / code / tables */
-  .md-content__inner { max-width: 64rem; margin-left: auto; margin-right: auto; }
+/* ── Inline + block code ── */
+.md-typeset code {
+  background: var(--dc-code-bg);
+  border: 1px solid var(--dc-code-border);
+  color: var(--dc-ink);
+  border-radius: var(--dc-radius-sm);
+  font-size: 0.86em;
+  padding: 1px 5px;
 }
-
-/* === Hero block for the series overview page === */
-.dc-hero {
-  position: relative;
-  margin: -1.5rem -1.5rem 2.5rem -1.5rem;
-  padding: 5rem 2rem;
-  text-align: center;
-  background: url("../assets/hero-shards.svg") center/cover no-repeat, #0a0e1a;
-  border-radius: 0 0 18px 18px;
-  overflow: hidden;
-  color: #eef2ff;
-}
-
-/* Sub-cap "NOW AVAILABLE"-style badge */
-.dc-hero__badge {
-  display: inline-block;
-  background: rgba(78, 168, 255, 0.12);
-  color: #6ec1ff;
-  border: 1px solid rgba(78, 168, 255, 0.35);
-  border-radius: 999px;
-  padding: 0.4rem 1.1rem;
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  margin-bottom: 1.5rem;
-  text-transform: uppercase;
-}
-
-.dc-hero__title {
-  font-size: clamp(2.5rem, 6vw, 5.5rem);
-  font-weight: 800;
-  margin: 0 0 1.5rem 0;
-  line-height: 1.04;
-  letter-spacing: -0.025em;
-}
-
-.dc-hero__title-1 {
-  display: block;
-  color: #ffffff;
-}
-
-.dc-hero__title-2 {
-  display: block;
-  color: #6ec1ff;
-  text-shadow: 0 2px 30px rgba(110, 193, 255, 0.35);
-}
-
-.dc-hero__subtitle {
-  font-size: 1.1rem;
-  color: rgba(238, 242, 255, 0.72);
-  max-width: 38rem;
-  margin: 1rem auto 2.5rem;
-  line-height: 1.55;
-}
-
-.dc-hero__ctas {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.dc-hero__cta {
-  display: inline-block;
-  padding: 0.8rem 1.6rem;
-  border-radius: 4px;
-  font-weight: 700;
-  font-size: 0.78rem;
-  letter-spacing: 0.12em;
-  text-decoration: none !important;
-  transition: transform 0.18s, background-color 0.18s;
-  text-transform: uppercase;
-}
-
-.dc-hero__cta--primary {
-  background: #6ec1ff;
-  color: #0a0e1a !important;
-}
-.dc-hero__cta--primary:hover {
-  background: #99d2ff;
-  transform: translateY(-2px);
-}
-
-.dc-hero__cta--secondary {
+.md-typeset pre > code {
   background: transparent;
-  color: #6ec1ff !important;
-  border: 2px solid #6ec1ff;
+  border: none;
+  padding: 0;
+  font-size: 13px;
 }
-.dc-hero__cta--secondary:hover {
-  background: rgba(110, 193, 255, 0.1);
-  transform: translateY(-2px);
+.md-typeset .highlight, .md-typeset pre {
+  border-radius: var(--dc-radius);
+  border: 1px solid var(--dc-code-border);
+  background: var(--dc-code-bg);
+  margin: 1rem 0;
 }
-
-/* Hide the markdown H1 on the overview page since the hero IS the title */
-.dc-overview-page .md-content__inner > h1:first-of-type {
-  display: none;
-}
-
-@media (max-width: 720px) {
-  .dc-hero { padding: 3.5rem 1.25rem; margin-left: -1rem; margin-right: -1rem; }
-}
-
-/* === Typography: bigger, friendlier === */
-:root {
-  --md-text-font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --md-code-font-family: "JetBrains Mono", "SF Mono", Consolas, "Liberation Mono", monospace;
-}
-
-/* Bump base font from Material's 16px to 17px — easier to read */
-.md-typeset {
-  font-size: 0.85rem;       /* up from .8 */
-  line-height: 1.7;          /* up from 1.6 */
-}
-
-/* Slightly larger code blocks too */
-.md-typeset code,
-.md-typeset pre {
-  font-size: 0.82em;
-  line-height: 1.6;
-}
-
-/* Subtler weight on body, sharper on headings (Inter handles this well) */
-.md-typeset {
-  font-weight: 400;
-}
-.md-typeset h1, .md-typeset h2, .md-typeset h3, .md-typeset h4 {
-  font-weight: 700;
-  letter-spacing: -0.01em;
-}
-
-/* === Hero-matching accent: override Material's "light blue" with the exact tone === */
-:root {
-  --md-accent-fg-color:           #6ec1ff;
-  --md-accent-fg-color--transparent: rgba(110, 193, 255, 0.1);
-}
-
-/* Slightly brighter link color in dark mode for contrast against the black primary */
-[data-md-color-scheme="slate"] {
-  --md-typeset-a-color: #6ec1ff;
-}
-
-/* === Hero compact variant: just the title, smaller padding === */
-.dc-hero--compact {
-  padding: 2.5rem 2rem;
-}
-
-.dc-hero--compact .dc-hero__title {
-  font-size: clamp(1.75rem, 4.5vw, 3.5rem);
+.md-typeset .highlight pre {
+  border: none;
   margin: 0;
 }
 
-@media (max-width: 720px) {
-  .dc-hero--compact { padding: 2rem 1rem; }
-}
-
-/* ────────────────────────────────────────────────────────────────────
-   Medium-render layout tuning — applied to the public GH Pages site.
-   Goal: cleaner sidebar (Part headings as small-caps labels, no icons),
-   slightly serif-leaning body, calmer header.
-   ──────────────────────────────────────────────────────────────────── */
-
-/* Headings already used Source Serif Pro; ensure body inherits */
-:root {
-  --md-text-font: "Source Serif Pro", Charter, Georgia, serif;
-  --md-code-font: "JetBrains Mono", Menlo, monospace;
-}
-
-/* Header: less bold, calmer look */
-.md-header {
-  background: #0a0e1a;
+/* ── Tables ── */
+.md-typeset table:not([class]) {
+  border-radius: var(--dc-radius);
+  border: 1px solid var(--dc-border);
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  font-size: 14px;
   box-shadow: none;
-  border-bottom: 1px solid rgba(255,255,255,0.05);
 }
-.md-header__title {
-  font-family: "Source Serif Pro", Charter, serif;
-  font-weight: 700;
-  letter-spacing: -0.01em;
+.md-typeset table:not([class]) th {
+  background: var(--dc-bg-sunken);
+  color: var(--dc-ink);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.01em;
+  border-bottom: 1px solid var(--dc-border);
+  padding: 10px 14px;
 }
-
-/* Sidebar: text-only, smaller, calmer hierarchy */
-.md-sidebar--primary {
-  padding-top: 8px;
+.md-typeset table:not([class]) td {
+  border-bottom: 1px solid var(--dc-border);
+  padding: 10px 14px;
+  color: var(--dc-ink-2);
 }
-.md-nav__title {
-  display: none;  /* hide the top "Table of contents" / nav title */
-}
-.md-nav--lifted > .md-nav__list > .md-nav__item--active > .md-nav__link,
-.md-nav__item--section > .md-nav__link[for] {
-  display: none;
-}
-
-/* Make section-level part labels look like Medium's small-caps section heads */
-.md-sidebar--primary .md-nav__item.md-nav__item--section
-  > .md-nav__link {
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: rgba(0,0,0,0.55);
-  margin-top: 16px;
-  margin-bottom: 4px;
-  padding-left: 0;
-  pointer-events: none;
-}
-[data-md-color-scheme="slate"] .md-sidebar--primary .md-nav__item.md-nav__item--section
-  > .md-nav__link {
-  color: rgba(255,255,255,0.5);
+.md-typeset table:not([class]) tr:last-child td {
+  border-bottom: none;
 }
 
-/* Sidebar links: clean text, no icons */
-.md-sidebar--primary .md-nav__link {
+/* ── Admonitions / callouts ── slim left bar + soft tint ── */
+.md-typeset .admonition, .md-typeset details {
+  border-radius: var(--dc-radius);
+  border: 1px solid var(--dc-border);
+  border-left: 3px solid var(--dc-accent);
+  background: var(--dc-bg-soft);
+  box-shadow: none;
   font-size: 14px;
-  line-height: 1.4;
-  padding: 4px 12px;
-  border-radius: 4px;
+  margin: 1rem 0;
 }
-.md-sidebar--primary .md-nav__link:hover {
-  background: rgba(0,0,0,0.04);
-}
-[data-md-color-scheme="slate"] .md-sidebar--primary .md-nav__link:hover {
-  background: rgba(255,255,255,0.05);
-}
-.md-sidebar--primary .md-nav__link--active {
-  background: rgba(110, 193, 255, 0.12);
-  color: #0072c6 !important;
-  font-weight: 600;
-}
-
-/* Hide the "icon" arrows beside sub-section toggles */
-.md-nav__icon { display: none !important; }
-
-/* Article body: slightly larger serif text for a Medium-like read */
-.md-typeset {
-  font-size: 17px;
-  line-height: 1.7;
-  letter-spacing: -0.003em;
-}
-.md-typeset h1 {
-  font-size: 38px;
-  font-weight: 700;
-  letter-spacing: -0.018em;
-  line-height: 1.15;
-  margin-top: 0;
-}
-.md-typeset h2 {
-  font-size: 26px;
-  font-weight: 700;
-  letter-spacing: -0.012em;
-}
-.md-typeset h3 {
-  font-size: 20px;
-  font-weight: 600;
-}
-.md-typeset p, .md-typeset li {
-  font-family: "Source Serif Pro", Charter, serif;
-}
-
-/* Code blocks: clean look like Medium */
-.md-typeset code,
-.md-typeset pre {
-  font-family: "JetBrains Mono", Menlo, monospace;
-}
-.md-typeset pre > code {
-  font-size: 14px;
-  line-height: 1.5;
-}
-
-/* ── Step-3 leaves: render ↳-prefixed nav items indented + dimmer ── */
-.md-sidebar--primary .md-nav__link[title^="↳ "],
-.md-sidebar--primary .md-nav__item .md-nav__link:has(span:first-letter ↳) {
-  padding-left: 28px;
-  color: rgba(0,0,0,0.55);
-  font-size: 13px;
-}
-
-/* Material's tabs bar: make it look like a clean menu strip */
-.md-tabs {
-  background: #0a0e1a;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-}
-.md-tabs__link {
-  font-size: 13px;
-  opacity: 0.85;
-  margin-right: 4px;
-}
-.md-tabs__link:hover {
-  opacity: 1;
-}
-.md-tabs__link--active {
-  font-weight: 600;
-  opacity: 1;
-}
-
-/* ── Sidebar tighter to the left edge ── */
-@media screen and (min-width: 76.1875em) {
-  .md-sidebar--primary {
-    width: 13.5rem;
-    padding-left: 0 !important;
-    padding-right: 6px;
-  }
-  .md-main__inner > .md-content {
-    margin-left: 0;
-  }
-}
-.md-sidebar--primary .md-sidebar__scrollwrap {
-  padding-left: 8px;
-}
-
-/* Sub-items (the 4 model leaves under Step 3) — indent + dim like a child list */
-.md-sidebar--primary .md-nav__item .md-nav__item .md-nav__link {
-  padding-left: 28px;
-  font-size: 13px;
-  color: rgba(0,0,0,0.62);
-  position: relative;
-}
-.md-sidebar--primary .md-nav__item .md-nav__item .md-nav__link::before {
-  content: "";
-  position: absolute;
-  left: 16px;
-  top: 50%;
-  width: 6px;
-  height: 1px;
-  background: rgba(0,0,0,0.25);
-}
-[data-md-color-scheme="slate"] .md-sidebar--primary .md-nav__item .md-nav__item .md-nav__link {
-  color: rgba(255,255,255,0.62);
-}
-[data-md-color-scheme="slate"] .md-sidebar--primary .md-nav__item .md-nav__item .md-nav__link::before {
-  background: rgba(255,255,255,0.25);
-}
-
-/* Re-enable section toggle for the Step 3 group (nav.sections kept it from being clickable; we need users to expand it) */
-.md-sidebar--primary .md-nav__item--nested > .md-nav__link {
-  cursor: pointer;
-  pointer-events: auto;
-  color: inherit !important;
-}
-
-/* ── FINAL LAYOUT FIX ── */
-
-/* Kill ALL list bullets in the sidebar nav */
-.md-nav__list,
-.md-sidebar .md-nav__list,
-.md-sidebar .md-nav__item {
-  list-style: none !important;
-  list-style-type: none !important;
-}
-.md-nav__list::before,
-.md-nav__item::before,
-.md-nav__item::marker {
-  content: none !important;
-  display: none !important;
-}
-
-/* Sidebar — pinned to the left edge */
-@media screen and (min-width: 76.1875em) {
-  .md-grid {
-    max-width: none;
-    padding-left: 0;
-    padding-right: 1.2rem;
-  }
-  .md-sidebar--primary {
-    width: 14rem;
-    padding: 0 !important;
-    margin-left: 0 !important;
-  }
-  .md-sidebar--primary .md-sidebar__scrollwrap {
-    padding-left: 8px !important;
-    padding-right: 4px;
-    margin: 0 !important;
-  }
-  .md-main__inner {
-    margin-left: 0;
-  }
-  .md-content {
-    max-width: 52rem;
-    margin-left: 1rem;
-  }
-  .md-sidebar--secondary {
-    margin-left: auto;
-  }
-}
-
-/* Ensure Home (and every page) shows the primary sidebar */
-.md-sidebar--primary {
-  display: block !important;
-}
-
-/* Top-level collapsible groups: Part 1/2/3 — make the chevron + label feel like a drop-down */
-.md-sidebar--primary .md-nav__item--nested > .md-nav__link {
-  font-weight: 600;
-  font-size: 14px;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  color: rgba(0,0,0,0.88);
-}
-[data-md-color-scheme="slate"] .md-sidebar--primary .md-nav__item--nested > .md-nav__link {
-  color: rgba(255,255,255,0.92);
-}
-
-/* The chevron arrow */
-.md-nav__icon.md-icon {
-  display: inline-block !important;
-}
-
-/* Sub-items (the 4 model leaves under Step 3) */
-.md-sidebar--primary .md-nav__item .md-nav__item .md-nav__link {
-  padding-left: 24px;
-  font-size: 13px;
-  color: rgba(0,0,0,0.62);
-}
-.md-sidebar--primary .md-nav__item .md-nav__item .md-nav__link::before {
-  display: none !important;
-}
-[data-md-color-scheme="slate"] .md-sidebar--primary .md-nav__item .md-nav__item .md-nav__link {
-  color: rgba(255,255,255,0.62);
-}
-
-/* ── KILL THE DECORATOR DASHES (the "-" the user kept seeing) ── */
-.md-sidebar--primary .md-nav__link::before,
-.md-sidebar--primary .md-nav__item::before,
-.md-sidebar--primary .md-nav__item .md-nav__item .md-nav__link::before {
-  content: none !important;
-  display: none !important;
+.md-typeset .admonition-title, .md-typeset summary {
   background: transparent !important;
-  width: 0 !important;
-  height: 0 !important;
+  font-weight: 600;
+  color: var(--dc-ink);
+  padding-top: 10px;
+  padding-bottom: 6px;
+}
+.md-typeset .admonition-title::before, .md-typeset summary::before {
+  background-color: var(--dc-accent) !important;
+}
+.md-typeset .admonition.warning, .md-typeset details.warning {
+  border-left-color: #d97706;
+}
+.md-typeset .admonition.warning .admonition-title::before {
+  background-color: #d97706 !important;
+}
+.md-typeset .admonition.danger, .md-typeset .admonition.error {
+  border-left-color: #dc2626;
+}
+.md-typeset .admonition.tip, .md-typeset .admonition.success {
+  border-left-color: #16a34a;
+}
+.md-typeset .admonition.tip .admonition-title::before,
+.md-typeset .admonition.success .admonition-title::before {
+  background-color: #16a34a !important;
 }
 
-/* ── SIDEBAR HARD LEFT — items start at 4px from screen edge ── */
-@media screen and (min-width: 76.1875em) {
-  .md-sidebar--primary {
-    width: 13rem;
-    padding: 0 !important;
-    margin: 0 !important;
-    left: 0 !important;
-  }
-  .md-sidebar--primary .md-sidebar__scrollwrap {
-    padding-left: 4px !important;
-    padding-right: 4px !important;
-    margin: 0 !important;
-  }
-  .md-sidebar--primary .md-sidebar__inner {
-    padding-left: 0 !important;
-    margin-left: 0 !important;
-  }
-  .md-sidebar--primary .md-nav,
-  .md-sidebar--primary .md-nav__list {
-    padding-left: 0 !important;
-    margin-left: 0 !important;
-  }
-  /* Top-level items (Home, Part 1, Part 2, Part 3) — start at 4px */
-  .md-sidebar--primary .md-nav--primary > .md-nav__list > .md-nav__item > .md-nav__link {
-    padding-left: 4px !important;
-  }
-  /* 2nd-level (Step 1, Step 2, Step 3, …) */
-  .md-sidebar--primary .md-nav__item .md-nav__item > .md-nav__link {
-    padding-left: 14px !important;
-  }
-  /* 3rd-level — the 4 model leaves under Step 3 */
-  .md-sidebar--primary .md-nav__item .md-nav__item .md-nav__item > .md-nav__link {
-    padding-left: 24px !important;
-  }
+/* ── Content tabs (Cloud / Self-hosted, anthropic / openai / vllm / ollama) ── */
+.md-typeset .tabbed-set {
+  margin: 1.25rem 0;
+}
+.md-typeset .tabbed-labels {
+  border-bottom: 1px solid var(--dc-border);
+  box-shadow: none !important;
+}
+.md-typeset .tabbed-labels > label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--dc-ink-3);
+  padding: 8px 14px;
+  margin: 0;
+  border-bottom: 2px solid transparent;
+}
+.md-typeset .tabbed-labels > label:hover {
+  color: var(--dc-ink);
+}
+.md-typeset .tabbed-set > input:checked + label {
+  color: var(--dc-accent);
+  border-bottom-color: var(--dc-accent);
+}
+.md-typeset .tabbed-content {
+  padding: 1rem 0 0;
 }
 
-/* ════════════════════════════════════════════════════════
-   FINAL OVERRIDE — wins over all earlier rules in this file
-   ════════════════════════════════════════════════════════ */
-@media screen and (min-width: 76.1875em) {
-  html body .md-sidebar--primary {
-    width: 14rem !important;
-    padding: 0 !important;
-    margin: 0 !important;
-  }
-  html body .md-sidebar--primary .md-sidebar__scrollwrap,
-  html body .md-sidebar--primary .md-sidebar__inner,
-  html body .md-sidebar--primary .md-nav,
-  html body .md-sidebar--primary .md-nav__list {
-    padding-left: 0 !important;
-    margin-left: 0 !important;
-  }
-  /* Push the link text against the left edge */
-  html body .md-sidebar--primary .md-nav--primary > .md-nav__list > .md-nav__item > .md-nav__link {
-    padding-left: 6px !important;
-  }
-  html body .md-sidebar--primary .md-nav__item .md-nav__item > .md-nav__link {
-    padding-left: 14px !important;
-  }
-  html body .md-sidebar--primary .md-nav__item .md-nav__item .md-nav__item > .md-nav__link {
-    padding-left: 26px !important;
-  }
-  /* Title row (DefenseClaw + OpenClaw on DGX Spark + svg) — left padding kill */
-  html body .md-sidebar--primary .md-nav__title {
-    padding-left: 6px !important;
-  }
+/* ── Buttons (.md-button) ── */
+.md-typeset .md-button {
+  border-radius: var(--dc-radius);
+  border: 1px solid var(--dc-border);
+  background: var(--dc-bg);
+  color: var(--dc-ink);
+  font-weight: 500;
+  font-size: 14px;
+  padding: 8px 16px;
+  box-shadow: none;
+  transition: border-color 0.15s, background 0.15s;
+}
+.md-typeset .md-button:hover {
+  border-color: var(--dc-accent);
+  background: var(--dc-bg-soft);
+  color: var(--dc-ink);
+}
+.md-typeset .md-button.md-button--primary {
+  background: var(--dc-accent);
+  color: white !important;
+  border-color: var(--dc-accent);
+}
+.md-typeset .md-button.md-button--primary:hover {
+  background: var(--dc-accent-hover);
+  border-color: var(--dc-accent-hover);
+  color: white !important;
 }
 
-/* ── Breathing room: article H1 not flush against header bar ── */
-.md-content__inner > h1:first-of-type {
-  margin-top: 1.5rem !important;
+/* ── Footer (next / prev) ── */
+.md-footer {
+  background: var(--dc-bg-soft);
+  color: var(--dc-ink-2);
+  border-top: 1px solid var(--dc-border);
+}
+.md-footer__inner {
+  padding: 1rem 0;
+}
+.md-footer__title {
+  color: var(--dc-ink);
+  background: transparent;
+}
+.md-footer__direction {
+  color: var(--dc-ink-3);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.md-footer__link {
+  opacity: 1;
+  color: var(--dc-ink);
+}
+.md-footer__link:hover {
+  color: var(--dc-accent);
+}
+.md-footer-meta {
+  background: var(--dc-bg);
+  color: var(--dc-ink-3);
+  border-top: 1px solid var(--dc-border);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   Hero (home page) — clean, minimal
+   ═══════════════════════════════════════════════════════════════════ */
+
+.dc-hero {
+  margin: 0.5rem 0 2rem;
+  padding: 3rem 0 2.5rem;
+  text-align: left;
+  border-bottom: 1px solid var(--dc-border);
+  background: transparent;
+}
+.dc-hero__title {
+  font-size: 44px;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin: 0;
+  color: var(--dc-ink);
+}
+.dc-hero__title-1, .dc-hero__title-2 {
+  display: block;
+}
+.dc-hero__title-2 {
+  background: linear-gradient(90deg, var(--dc-accent), #a855f7);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.dc-hero--compact {
+  padding: 2rem 0 1.5rem;
+}
+.dc-hero--compact .dc-hero__title {
+  font-size: 36px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   Project Steps grid (.step-grid / .step-list / .step-num)
+   ═══════════════════════════════════════════════════════════════════ */
+
+.step-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+.step-grid > div {
+  border: 1px solid var(--dc-border);
+  border-radius: var(--dc-radius);
+  padding: 1.25rem;
+  background: var(--dc-bg-soft);
+}
+.step-grid h3, .step-grid h4 {
+  font-size: 11px !important;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--dc-ink-3) !important;
+  margin: 0 0 0.75rem !important;
+  border: none !important;
+  padding: 0 !important;
+}
+.step-list {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+.step-list li {
+  margin: 0;
+  padding: 0;
+}
+.step-list li a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 0;
+  color: var(--dc-ink) !important;
+  font-size: 14px;
+  border-bottom: none !important;
+}
+.step-list li a:hover {
+  color: var(--dc-accent) !important;
+}
+.step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--dc-bg);
+  border: 1px solid var(--dc-border);
+  color: var(--dc-ink-3);
+  font-size: 11px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+.step-list li a:hover .step-num {
+  background: var(--dc-accent);
+  color: white;
+  border-color: var(--dc-accent);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   Images
+   ═══════════════════════════════════════════════════════════════════ */
+
+.md-typeset img {
+  border-radius: var(--dc-radius);
+  border: 1px solid var(--dc-border);
+  max-width: 100%;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   Mobile / drawer
+   ═══════════════════════════════════════════════════════════════════ */
+
+@media screen and (max-width: 76.1875em) {
+  .md-nav--primary .md-nav__title {
+    background: var(--dc-bg);
+    color: var(--dc-ink);
+    border-bottom: 1px solid var(--dc-border);
+  }
 }
