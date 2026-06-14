@@ -162,16 +162,24 @@ defenseclaw setup provider add \
   --available-model local-llm
 ```
 
-Then point DefenseClaw's unified LLM block at it:
+Then point DefenseClaw's unified LLM block at it. Run:
 
 ```bash
-defenseclaw setup llm \
-  --provider vllm \
-  --model local-llm \
-  --base-url http://127.0.0.1:8000/v1
+defenseclaw setup llm
 ```
 
-Give the LLM block a literal dummy key so the reachability probe passes, and disable the judge for the demo:
+Answer the prompts:
+
+| Prompt | Answer |
+|---|---|
+| Pick provider | `2` (**OpenAI**) — vLLM serves an OpenAI-compatible API, so we route through litellm's `openai` provider with a custom base URL |
+| LLM model id | `local-llm` |
+| DEFENSECLAW_LLM_KEY | `vllm-local` *(any non-empty value, the local server ignores it)* |
+| LLM base URL | `http://127.0.0.1:8000/v1` |
+| LLM timeout (seconds) [30] | (press Enter) |
+| LLM max retries [3] | (press Enter) |
+
+Then give the LLM block a literal key so the reachability probe passes, and disable the judge for the demo:
 
 ```bash
 python3 - <<'EOF'
