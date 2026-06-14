@@ -132,6 +132,8 @@ systemctl --user restart openclaw-gateway
 ss -tlnp | grep 18789 && echo "openclaw gateway up"
 ```
 
+![OpenClaw gateway environment + restart confirms 18789 listening](../assets/step4-systemd-env.png)
+
 ## 4B.2 — Set up DefenseClaw, point it at your server
 
 ```bash
@@ -148,6 +150,8 @@ Answer the init wizard:
 | Start gateway after setup | **y** |
 | Run readiness checks | **y** |
 
+![defenseclaw init readiness checks](../assets/step4-defenseclaw-init.png)
+
 ### Register the vLLM endpoint
 
 Tell DefenseClaw your local server is a known provider. Declare both the bare host and host:port as domains, so the guardrail recognises traffic from OpenClaw heading to your vLLM:
@@ -161,6 +165,8 @@ defenseclaw setup provider add \
   --domain 127.0.0.1:8000 \
   --available-model local-llm
 ```
+
+![Provider written to custom-providers.json](../assets/step4-setup-provider-add.png)
 
 Then point DefenseClaw's unified LLM block at it. Run:
 
@@ -178,6 +184,8 @@ Answer the prompts:
 | LLM base URL | `http://127.0.0.1:8000/v1` |
 | LLM timeout (seconds) [30] | (press Enter) |
 | LLM max retries [3] | (press Enter) |
+
+![defenseclaw setup llm wizard with vLLM endpoint configured](../assets/step4-setup-llm-wizard.png)
 
 Then give the LLM block a literal key so the reachability probe passes, and disable the judge for the demo:
 
@@ -201,6 +209,8 @@ defenseclaw doctor 2>&1 | grep -iE 'LLM reachable|overlay'
 
 ??? note "Expected output"
     `[PASS] LLM reachable` and `[PASS] Custom-provider overlay`
+
+![defenseclaw doctor LLM PASS](../assets/step4-doctor-llm-pass.png)
 
 ### Run the DefenseClaw gateway as a service
 
@@ -254,6 +264,8 @@ Answer:
 | Scanner engine | **local** |
 | LLM judge | **N** |
 | Advanced options | **N** |
+
+![defenseclaw setup guardrail observe-mode applied](../assets/step4-setup-guardrail.png)
 
 ## 4B.4 — Verify
 

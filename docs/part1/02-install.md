@@ -56,6 +56,6 @@ defenseclaw --version
 ??? note "Expected output"
     defenseclaw, version 0.7.2
 
-![DefenseClaw install output](../assets/step3-defenseclaw-install.png)
+![DefenseClaw installed successfully](../assets/step2-defenseclaw-installed.png)
 
 [Continue to Step 3 — Pick your model →](03-setup-model.md){ .md-button .md-button--primary }
