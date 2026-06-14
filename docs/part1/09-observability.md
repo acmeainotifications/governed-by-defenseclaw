@@ -91,15 +91,13 @@ defenseclaw setup local-observability up
 
 ### Open Grafana
 
-Grafana is bound to `127.0.0.1:3001` on the host. Reach it from your laptop by SSH-tunnelling:
+Grafana is bound to `127.0.0.1:3001` on the host. SSH-tunnel it from your laptop:
 
 ```bash
 ssh -L 3001:127.0.0.1:3001 youruser@your-dgx-host
 ```
 
 …then browse to **http://localhost:3001** (login: `admin` / `admin`).
-
-If you've already exposed the host through a Cloudflare Access / Tailscale / reverse proxy hostname, hit `https://your-grafana-hostname.example.com` directly instead.
 
 ### Pre-provisioned dashboards
 
