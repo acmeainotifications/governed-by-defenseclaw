@@ -35,9 +35,9 @@ ollama pull llama3.2:3b
 curl -s http://127.0.0.1:11434/api/tags | python3 -m json.tool | head
 ```
 
-> **Expected output**
-> a `models` array with the model name (e.g. `llama3.2:3b`)
->
+??? note "Expected output"
+    a `models` array with the model name (e.g. `llama3.2:3b`)
+
 
 > **WARNING — Serve a clean model alias (vLLM only)**
 > If your model id comes back with a provider prefix like `openai/gpt-oss-120b`, DefenseClaw's guardrail will misclassify it as `openai` and break. Re-serve with `--served-model-name local-llm`. Ollama doesn't have this problem.
@@ -52,9 +52,9 @@ curl -s http://127.0.0.1:11434/v1/chat/completions \
   | python3 -m json.tool | grep -iE 'content|finish'
 ```
 
-> **Expected output**
-> `"content": "Islamabad"`
->
+??? note "Expected output"
+    `"content": "Islamabad"`
+
 
 ---
 
@@ -190,9 +190,9 @@ Confirm DefenseClaw sees the endpoint and the overlay:
 defenseclaw doctor 2>&1 | grep -iE 'LLM reachable|overlay'
 ```
 
-> **Expected output**
-> `[PASS] LLM reachable` and `[PASS] Custom-provider overlay`
->
+??? note "Expected output"
+    `[PASS] LLM reachable` and `[PASS] Custom-provider overlay`
+
 
 ## 4B.3 — Configure the guardrail
 
@@ -222,11 +222,11 @@ Three quick tests to confirm the agent works and the guardrail is in front of it
 openclaw agent --session-id check -m "Capital of Pakistan? One word." 2>&1 | tail -2
 ```
 
-> **Expected output**
-> ```
-> `Islamabad`
-> ```
->
+??? note "Expected output"
+    ```
+    `Islamabad`
+    ```
+
 
 ### Sensitive request
 

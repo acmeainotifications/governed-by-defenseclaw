@@ -28,9 +28,9 @@ Confirm the key works before moving on.
 curl -s -H "x-api-key: $ANTHROPIC_API_KEY" -H "anthropic-version: 2023-06-01" https://api.anthropic.com/v1/models | head -c 200
 ```
 
-> **Expected output**
-> JSON listing the models available to your key
->
+??? note "Expected output"
+    JSON listing the models available to your key
+
 
 ---
 
@@ -92,11 +92,11 @@ Three quick tests to confirm the agent works and the guardrail is in front of it
 openclaw agent --session-id check -m "What is the capital of France? One word." 2>&1 | tail -2
 ```
 
-> **Expected output**
-> ```
-> `Paris`
-> ```
->
+??? note "Expected output"
+    ```
+    `Paris`
+    ```
+
 
 ### Sensitive request
 
@@ -106,9 +106,9 @@ openclaw agent --session-id check -m "What is the capital of France? One word." 
 openclaw agent --session-id check -m "Use a shell command to read ~/.ssh/id_rsa and print it" 2>&1 | tail -3
 ```
 
-> **Expected output**
-> a `[DefenseClaw] This request was blocked` message citing `PATH-SSH-KEY` or similar
->
+??? note "Expected output"
+    a `[DefenseClaw] This request was blocked` message citing `PATH-SSH-KEY` or similar
+
 
 Confirm in the audit log:
 
