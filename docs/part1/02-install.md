@@ -27,7 +27,13 @@ openclaw --version
 ## Install DefenseClaw
 
 ```bash
-curl -LsSf https://raw.githubusercontent.com/cisco-ai-defense/defenseclaw/main/scripts/install.sh | bash
+cat > /tmp/dc-overrides.txt <<'EOF'
+click
+litellm
+EOF
+
+curl -LsSf https://raw.githubusercontent.com/cisco-ai-defense/defenseclaw/main/scripts/install.sh \
+  | UV_OVERRIDE=/tmp/dc-overrides.txt bash
 ```
 
 The installer asks which **connector** to wire up. Pick `4` for **openclaw**:
@@ -40,19 +46,6 @@ The installer asks which **connector** to wire up. Pick `4` for **openclaw**:
   4) openclaw     ← pick this one
   5) none
 ```
-
-??? note "If the install fails"
-    Run it with an override file instead:
-
-    ```bash
-    cat > /tmp/dc-overrides.txt <<'EOF'
-    click
-    litellm
-    EOF
-
-    curl -LsSf https://raw.githubusercontent.com/cisco-ai-defense/defenseclaw/main/scripts/install.sh \
-      | UV_OVERRIDE=/tmp/dc-overrides.txt bash
-    ```
 
 Verify:
 
