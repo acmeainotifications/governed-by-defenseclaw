@@ -56,6 +56,16 @@ sed -i 's|"http://127.0.0.1:8088/services/collector/event"|"http://127.0.0.1:808
 sed -i 's/"127.0.0.1:8088:8088"/"127.0.0.1:8089:8088"/' "$COMPOSE"
 ```
 
+The bundle's `.env.example` (the file the bridge wrapper reads on every start) also carries the HEC URL — update it in the **same two places** so the readiness wait targets the right port:
+
+```bash
+ENV_PKG=$DC/_data/splunk_local_bridge/env/.env.example
+ENV_BNDL=~/.defenseclaw/splunk-bridge/env/.env.example
+for f in "$ENV_PKG" "$ENV_BNDL"; do
+  [ -f "$f" ] && sed -i 's|127.0.0.1:8088/services/collector/event|127.0.0.1:8089/services/collector/event|g' "$f"
+done
+```
+
 ## 7.2 — Start the bundled Splunk
 
 ```bash
@@ -128,15 +138,17 @@ defenseclaw-gateway restart
 
 ## 7.5 — Open the dashboard
 
-Splunk Web is bound to `127.0.0.1`, only reachable from the DGX itself. SSH-tunnel from your laptop:
+Splunk Web is bound to `127.0.0.1:8090`. Open it directly from your laptop browser if you've fronted it with a Cloudflare Access tunnel:
+
+# https://splunk.theacmeai.com
+
+Or SSH-tunnel from your laptop if you haven't set up a tunnel:
 
 ```bash
 ssh -L 8090:127.0.0.1:8090 youruser@your-dgx-host
 ```
 
-*(leave the shell open)*
-
-Then in your laptop browser: **http://localhost:8090**
+*(leave the shell open, then browse to http://localhost:8090)*
 
 | Field | Value |
 |---|---|
