@@ -32,19 +32,76 @@ defenseclaw alerts
 
 ## Bundled local observability stack
 
-DefenseClaw ships a one-command Prometheus + Loki + Tempo + Grafana stack with pre-built dashboards.
+DefenseClaw ships a one-command Prometheus + Loki + Tempo + Grafana stack with pre-built dashboards. It listens on these ports:
+
+| Service | Default port |
+|---|---|
+| Grafana | `3000` |
+| Prometheus | `9090` |
+| Loki | `3100` |
+| Tempo | `3200` |
+| OTLP gRPC | `4317` |
+| OTLP HTTP | `4318` |
+
+### Remap Grafana if port 3000 is taken
+
+It's common for `3000` to already be in use on a multi-service host (Grafana from another stack, dev servers, brain UIs). Remap Grafana to `3001` by patching the stack files before bringing it up:
 
 ```bash
-defenseclaw setup local-observability
+DC=~/.defenseclaw/.venv/lib/python3.12/site-packages/defenseclaw
+LOCAL_OBS=$DC/commands/cmd_setup_local_observability.py
+SETUP=$DC/commands/cmd_setup.py
+COMPOSE=$DC/_data/local_observability_stack/docker-compose.yml
+BRIDGE=$DC/_data/local_observability_stack/bin/openclaw-observability-bridge
+
+# Pre-flight port tuple
+sed -i 's|(3000, "Grafana")|(3001, "Grafana")|' "$LOCAL_OBS"
+
+# Probe + already-running check
+sed -i 's|("127.0.0.1", 3000)|("127.0.0.1", 3001)|g; s|reachable on :3000|reachable on :3001|g' "$SETUP"
+
+# Bridge URLs
+sed -i 's|127\.0\.0\.1:3000|127.0.0.1:3001|g; s|localhost:3000|localhost:3001|g' "$BRIDGE"
+
+# Compose host-side port
+sed -i 's|}:3000:3000"|}:3001:3000"|g' "$COMPOSE"
 ```
 
-After it starts, browse to:
+If your `3000` is free, skip the block above.
 
-| Service | URL |
-|---|---|
-| Grafana | `http://localhost:3000` (admin / admin on first login) |
-| Prometheus | `http://localhost:9090` |
-| Loki | `http://localhost:3100` |
+### Bring the stack up
+
+```bash
+defenseclaw setup local-observability up
+```
+
+??? note "Expected output (tail)"
+    ```
+    Local observability stack is up
+    ───────────────────────────────
+      Grafana:    http://localhost:3001  (admin / admin)
+      Prometheus: http://localhost:9090
+      Tempo API:  http://localhost:3200
+      Loki API:   http://localhost:3100
+      OTLP gRPC:  127.0.0.1:4317
+      OTLP HTTP:  127.0.0.1:4318
+    ```
+
+![defenseclaw setup local-observability up — pre-flight + container start](../assets/step9-observability-setup.png)
+
+### Open Grafana
+
+If you've Cloudflare-tunneled it (the same way Splunk goes through `splunk.theacmeai.com`):
+
+# https://grafana.theacmeai.com
+
+Otherwise SSH-tunnel from your laptop:
+
+```bash
+ssh -L 3001:127.0.0.1:3001 ajspark@<dgx-host>
+```
+
+…then open **http://localhost:3001** (login: `admin` / `admin`).
 
 ## Prometheus scrape (existing setup)
 

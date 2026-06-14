@@ -160,6 +160,8 @@ You'll see entries like:
 }
 ```
 
+![skill-scanner JSON finding output for the test skill](../assets/step8-skill-scanner-finding.png)
+
 ```bash
 rm -rf /tmp/test-skill
 ```
@@ -189,6 +191,8 @@ Five analyzers ship with `skill-scanner`. Three run by default, two are opt-in:
 ```bash
 skill-scanner list-analyzers
 ```
+
+![skill-scanner list-analyzers + defenseclaw status](../assets/step8-list-analyzers.png)
 
 | Analyzer | Default | What it does |
 |---|---|---|

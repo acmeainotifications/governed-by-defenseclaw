@@ -166,7 +166,7 @@ index=defenseclaw_local earliest=-15m
 ??? note "Expected output"
     the prompt-scan verdicts from Step 4
 
-![Splunk dashboard showing sev=HIGH verdicts](../assets/step6-splunk-dashboard.png)
+![Splunk dashboard showing 20 audit events streaming in](../assets/step7-splunk-dashboard.png)
 
 ## Useful saved searches
 
