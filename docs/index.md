@@ -40,8 +40,8 @@ And DefenseClaw doesn't work alone. Underneath it, NVIDIA's **OpenShell** keeps 
 
 And this is not OpenClaw-only. DefenseClaw now ships connectors for a whole range of agents, from Claude Code and Codex to Cursor, Gemini CLI, and more, all governed through one gateway with the same rules. You pick the agent; the guardrails don't change.
 
-![alt text](image.png)
-Source: Cisco AI Defense · cisco-ai-defense.github.io/defenseclaw
+![alt text](assets/defenseclaw-connectors.png)
+Source: Cisco AI Defense: [cisco-ai-defense.github.io/defenseclaw](https://cisco-ai-defense.github.io/defenseclaw/)
 
 For the deeper "why," [**DJ Sampath**](https://blogs.cisco.com/ai/cisco-announces-defenseclaw){ target="_blank" rel="noopener" } explains it well in his blog, and [**Arjun Sambamoorthy**](https://blogs.cisco.com/ai/defenseclaw-is-live){ target="_blank" rel="noopener" } covers the DefenseClaw stack in his post.
 
@@ -55,4 +55,5 @@ In my DGX Spark, I installed OpenClaw governed by DefenseClaw, watched through S
 2. **[Part 2 (Telegram channel)](part2/index.md):** add Telegram so you can reach the agent from your phone, set up so only you can message it.
 3. **[Part 3 (Webex use case)](part3/index.md):** wire Webex through its API as governed tools.
 
-This is the first Claw stack. **Nemoclaw** and **Hermes** are next on the list, and will write those up the same way. Follow along if you want to catch them.
+This is the first Claw stack, not the last. NemoClaw, Hermes and Claude Code are next on my list, and Hermes/Claude-Code are already one of those DefenseClaw connectors. I'll write them up the same way, so follow along if you want to catch them.
+
